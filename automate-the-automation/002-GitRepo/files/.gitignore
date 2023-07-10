@@ -1,0 +1,36 @@
+#  Local .terraform directories
+.terraform/*
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+**/*.tfstate
+*tfstate*
+**/*tfstate*
+
+# flux repos
+*-flux/*
+**/*-flux/*
+
+# no files named tf*
+tf*
+**/tf*
+
+# no output files
+output/*
+**/output/*
+*.out
+**/*.out
+
+# no log files
+*.log
+**/*.log
+
+# no plan files
+*.tfplan
+**/*.tfplan
+*planfile*
+**/*planfile*
+
+# no code analysis files
+**/*tflint*

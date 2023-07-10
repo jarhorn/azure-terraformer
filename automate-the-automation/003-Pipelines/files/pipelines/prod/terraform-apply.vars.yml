@@ -1,0 +1,3 @@
+# terraform-apply pipeline specific vars go here (or shared vars overrides)
+
+variables: []

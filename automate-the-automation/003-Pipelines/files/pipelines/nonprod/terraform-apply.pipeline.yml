@@ -1,0 +1,31 @@
+name: $(Year:yyyy).$(Month).$(DayOfMonth)-terraform-apply-non-prod.$(Rev:r)
+
+parameters:
+  - name: terraform_var_file_name 
+    displayName: 'Target Environment'
+    type: string
+    default: 'resource_group_contributor/dev'
+    values: 
+      # The security domain 'subscription_owner' can have only prod and non-prod tfvars folders
+      - subscription_owner/sandbox004dev
+            
+      # The security domain 'resource_group_contributor' can have as many tfvars folders as there are environments
+      - resource_group_contributor/dev           
+
+trigger: none
+
+extends:
+  template: ../shared/base.pipeline.yml
+  parameters:
+    folder: nonprod
+    pipeline: terraform-apply
+    stages: 
+    - template: azure-pipelines/terraform/templates/stages/terraform-plan-apply.yml@shared_assets
+      parameters:
+        environment: nonprod
+        container_name: aztfmod_rover
+        terraform_configuration_repository: 'caf-terraform-starter'
+        terraform_state_container_name: 'cafterraformstarter'
+        terraform_var_file_name: ${{ parameters.terraform_var_file_name }}
+        service_connection_name_subscription_owner: 'spn-tf-sandboxautomationdemo004-owner-ado-arm-001' 
+        service_connection_name_resource_group_contributor: 'spn-tf-cafterraformstarter-nonprod-contributor-ado-arm-001'

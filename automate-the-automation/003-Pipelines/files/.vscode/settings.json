@@ -1,0 +1,19 @@
+{
+    "editor.tabSize": 2,
+    "terminal.integrated.scrollback": 8000,
+    
+    // Terraform Extension Settings
+    "terraform.experimentalFeatures.prefillRequiredFields": true,
+    "editor.suggest.preview": true,
+    "terraform.codelens.referenceCount": true,
+    "[terraform]": {
+        "editor.defaultFormatter": "hashicorp.terraform",
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "file"
+    },
+    "[terraform-vars]": {
+        "editor.defaultFormatter": "hashicorp.terraform",
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "file"
+    }
+}

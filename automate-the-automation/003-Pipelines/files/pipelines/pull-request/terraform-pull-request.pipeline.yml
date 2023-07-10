@@ -1,0 +1,20 @@
+# YAML Schema Reference:  https://aka.ms/yaml
+name: $(Year:yyyy).$(Month).$(DayOfMonth)-terraform-pull-request.$(Rev:r)
+trigger: none
+
+extends:
+  template: ../shared/base.pipeline.yml
+  parameters:
+    folder: pull-request
+    pipeline: terraform-pull-request
+    stages: 
+    - template: azure-pipelines/terraform/templates/stages/terraform-pull-request.yml@shared_assets
+      parameters:
+        agent_pool_name: Crowe - DevOps
+        container_name: aztfmod_rover
+        terraform_configuration_repository: $(terraform_configuration_repository)
+        terraform_configuration_directory: $(terraform_configuration_directory)
+        terraform_state_resource_group_name: $(terraform_state_resource_group_name)
+        terraform_state_storage_account_name: $(terraform_state_storage_account_name)
+        terraform_state_container_name: $(terraform_state_container_name)
+        terraform_state_key_name: $(terraform_state_key_name)

@@ -1,0 +1,19 @@
+# shared variables that apply to all/most pipelines
+
+variables:
+- group: TERRAFORM_EXECUTIONS_COMMON 
+
+- name: terraform_configuration_repository
+  value: caf-terraform-starter
+
+- name: terraform_configuration_directory
+  value: terraform
+
+- name: terraform_state_resource_group_name
+  value: IS_Backend_PRD
+
+- name: terraform_state_storage_account_name
+  value: prdissharedtfbackend
+
+- name: terraform_state_container_name
+  value: cafterraformstarter

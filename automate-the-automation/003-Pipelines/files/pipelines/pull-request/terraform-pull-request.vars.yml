@@ -1,0 +1,6 @@
+# terraform-pull-request pipeline specific vars go here (or shared vars overrides)
+
+variables: 
+# doesn't matter because -backend=false (but parameter is still required by task :/ )
+- name: terraform_state_key_name
+  value: pull-request.tfstate

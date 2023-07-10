@@ -1,0 +1,42 @@
+parameters:
+  # the root path where the azure pipelines for your product are stored
+  - name: basePath
+    type: string
+    default: azure-pipelines
+
+  - name: folder
+    type: string
+
+  - name: pipeline
+    type: string
+
+  - name: stages
+    type: stageList
+    default: []
+
+
+resources:
+  repositories:
+  - repository: shared_assets
+    type: git
+    name: Infrastructure/shared-assets
+    ref: refs/tags/pipelines/terraform/2.1.0
+
+  containers:
+  - container: aztfmod_rover
+    image: aztfmod/rover:1.1.6-2202.2503
+    options: >-
+      --user 0:0 
+      -e TF_PLUGIN_CACHE_DIR="/home/vscode/plugin-cache" 
+      -e TF_DATA_DIR="/home/vscode"
+
+
+variables:
+# shared, meaning, vars that are applicable to more than one pipeline
+- template: /${{ parameters.basePath }}/shared/shared.vars.yml
+
+# pipeline specific vars (can be used to override shared vars on a per pipeline basis)
+- template: /${{ parameters.basePath }}/${{ parameters.folder }}/${{ parameters.pipeline }}.vars.yml
+
+
+stages: ${{ parameters.stages }}

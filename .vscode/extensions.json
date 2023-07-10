@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "HashiCorp.terraform",
+        "ms-azuretools.vscode-azureterraform",
+        "esbenp.prettier-vscode",
+        "mutantdino.resourcemonitor",
+        "ms-azure-devops.azure-pipelines",
+        "ms-vscode.vscode-node-azure-pack"
+    ]
+}
